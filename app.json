@@ -25,9 +25,11 @@
   ],
   "env": {
     "AWS_SDK_ACCESS_KEY_ID": {
+      "value": "dummy",
       "required": true
     },
     "AWS_SDK_SECRET_ACCESS_KEY": {
+      "value": "dummy",
       "required": true
     },
     "CDN_URL": {
@@ -64,6 +66,15 @@
     "SECRET_KEY_BASE": {
       "required": true,
       "generator": "secret"
+    },
+    "SMTP_HOST": {
+      "value": "email-smtp.ap-northeast-1.amazonaws.com"
+    },
+    "SMTP_PASSWORD": {
+      "value": "dummy"
+    },
+    "SMTP_USERNAME": {
+      "value": "dummy"
     },
     "WEB_CONCURRENCY": {
       "value": "1"
