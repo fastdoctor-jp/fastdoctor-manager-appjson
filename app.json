@@ -1,0 +1,85 @@
+{
+  "addons": [
+    "newrelic",
+    "papertrail",
+    "heroku-postgresql",
+    "heroku-redis",
+    "scheduler"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/mojodna/heroku-buildpack-jemalloc.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "https://github.com/sensedata/image-optim-buildpack.git"
+    },
+    {
+      "url": "heroku/metrics"
+    }
+  ],
+  "env": {
+    "AWS_SDK_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SDK_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "CDN_URL": {
+      "value": "",
+      "required": false
+    },
+    "INACTIVE_PUMA_WORKER_KILLER": {
+      "value": "true"
+    },
+    "JEMALLOC_ENABLED": {
+      "value": "true"
+    },
+    "LANG": {
+      "value": "ja_JP.UTF-8"
+    },
+    "LOG_LEVEL": {
+      "value": "info"
+    },
+    "RACK_ENV": {
+      "value": "staging"
+    },
+    "RAILS_ENV": {
+      "value": "staging"
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "value": "enabled"
+    },
+    "RAILS_MAX_THREADS": {
+      "value": "5"
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "value": "enabled"
+    },
+    "SECRET_KEY_BASE": {
+      "required": true,
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "value": "1"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    },
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "fastdoctor-manager",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load db:seed_fu"
+  },
+  "stack": "heroku-20"
+}
